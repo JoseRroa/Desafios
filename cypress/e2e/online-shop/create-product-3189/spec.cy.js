@@ -18,8 +18,8 @@ const productPage = new ProductPage();
 beforeEach("Preconditions",()=>{
     cy.visit("");
     signInPage.clickOnSignIn();
-    loginPage.clickOnUser();
-    loginPage.clickOnPass();
+    loginPage.clickOnUser(Cypress.env().user);
+    loginPage.clickOnPass(Cypress.env().password);
     loginPage.clickOnLogin();
     homePage.goToOnlineShop();
 
@@ -34,13 +34,13 @@ it("Deberia premitir al usuario crear el producto",()=>{
     productPage.writeNewId(the.product.id);
     productPage.clickOnCreateproduct();
     productPage.clickOnCloseModal();
-    productPage.clickDropdown(the.product.value);
-    productPage.clickSearchBar(the.product.id);
+    productPage.selectDropdown();
+    productPage.typeSearchBar(the.product.id);
     productPage.clickOnDeleteButton();
     productPage.clickOnSaveEditbutton();
     productPage.clickOnCloseModal();
-    productPage.clickDropdown();
-    productPage.clickSearchBar();
+    productPage.selectDropdown();
+    productPage.typeSearchBar();
     productPage.notExist(the.product.id);
     });    
     
