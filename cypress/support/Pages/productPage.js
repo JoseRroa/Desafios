@@ -9,7 +9,7 @@ export class ProductPage {
         this.closeModalButton = "[data-cy='closeModal']"
         this.searchIdSelect = "[data-cy='search-type']"
         this.searchTypeInput = "[data-cy='search-bar']"
-        this.deleteProductButton = "[data-cy='delete-3189']"
+        this.deleteProductButton = 'button[aria-label="Delete"]'
         this.saveEditButton = "#saveEdit"
 
     }
@@ -42,16 +42,17 @@ export class ProductPage {
         cy.get(this.closeModalButton).click();
     }
 
-    clickDropdown(){
+    selectDropdown(){
         cy.contains(this.searchIdSelect, "ID" ).select("ID")
     }
 
-    clickSearchBar(id){
+    typeSearchBar(id){
         cy.get(this.searchTypeInput).type(`${id} {enter}`)
     }
 
     clickOnDeleteButton(){
-        cy.get(this.deleteProductButton).click();
+        cy.get(this.deleteProductButton).first().click();
+
     }
 
     clickOnSaveEditbutton(){

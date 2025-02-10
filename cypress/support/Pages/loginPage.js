@@ -8,11 +8,11 @@ export class LoginPage {
 
     }
 
-    clickOnUser(){
-        cy.get(this.userInput).type(Cypress.env().user)
+    clickOnUser(user){
+        cy.get(this.userInput).type(user)
     }
-    clickOnPass(){
-        cy.get(this.passInput).type(Cypress.env().password)
+    clickOnPass(password){
+        cy.get(this.passInput).type(password)
     }
 
     clickOnLogin(){
