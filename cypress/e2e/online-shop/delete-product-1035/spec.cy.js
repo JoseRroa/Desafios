@@ -6,8 +6,6 @@ const suiteId = directory.split(/[-]/).pop();
 
 describe(`${suiteName} - ${module}`, ()=>{
 
-});
-
 it("Deberia premitir al usuario delete el producto",()=>{
     cy.fixture(`${module}/${suiteName}-${suiteId}/${suiteId}.json`).then(the =>{
         the.product.name = `${the.product.name}-${suiteId}`
@@ -17,4 +15,6 @@ it("Deberia premitir al usuario delete el producto",()=>{
     cy.log(module)
     cy.log(suiteName)
     cy.log(suiteId)
+});
+
 });
