@@ -4,5 +4,10 @@
      "price": 20,
      "img": "https://www.juleriaque.com.ar/versace-woman-edp-89235/p"
   
- }
+        },
+     "product2":{
+            "name": "Computadora",
+            "price": 30,
+            "img": "https://www.PUT.com.ar/vers"
+     }   
  }

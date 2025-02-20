@@ -8,10 +8,10 @@ export class LoginPage {
 
     }
 
-    clickOnUser(user){
+    writeOnUser(user){
         cy.get(this.userInput).type(user)
     }
-    clickOnPass(password){
+    writeOnPass(password){
         cy.get(this.passInput).type(password)
     }
 

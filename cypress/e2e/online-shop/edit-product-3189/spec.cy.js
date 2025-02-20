@@ -17,9 +17,9 @@ describe(`${suiteName} - ${module}`, ()=>{
             window.localStorage.setItem("token", respuesta.body.token);
             window.localStorage.setItem("user", respuesta.body.username);
             window.localStorage.setItem("userId", respuesta.body.user._id);
-            Cypress.env("token", respuesta.body.token);
-            cy.log(`✅ Token obtenido en login: ${Cypress.env("token")}`);
-
+            Cypress.env().token = respuesta.body.token;
+            
+            
         });
         cy.visit('');
 
@@ -28,7 +28,6 @@ describe(`${suiteName} - ${module}`, ()=>{
         cy.fixture(`${module}/${suiteName}-${suiteId}/${suiteId}`).then(the =>{
           the.product.id = suiteId;
           
-          cy.log(`🔍 Token antes del GET: ${Cypress.env("token")}`);
         cy.request({
             method: "GET",
             url: `${Cypress.env().base_url_api}/products?id=${the.product.id}`,
@@ -38,23 +37,16 @@ describe(`${suiteName} - ${module}`, ()=>{
             }
             
         }).its("body.products.docs").each((product) => {
-            cy.log(`🚨 Token antes del DELETE: ${Cypress.env("token")}`);
-            cy.wait(2000);
             cy.request({
                 method :"DELETE",
                 url: `${Cypress.env().base_url_api}/product/${product._id}`,
                 headers:{
-                    headers: {
-                        Authorization: `Bearer ${Cypress.env("token")}`
-                      }
-                      
-                }
-            }).then(respuesta => {
-                cy.log("✅ Respuesta DELETE:", response.body);
-                cy.log("✅ Respuesta GET:", response.body);
-              });
+                    
+                  Authorization: `Bearer ${Cypress.env().token}`
+                    }
+               });
 
-        });
+            });
 
         cy.request({
             method:"POST",
@@ -63,15 +55,8 @@ describe(`${suiteName} - ${module}`, ()=>{
             headers:{
                 Autorization :`Bearer ${Cypress.env().token}`
             }
-        });
-        
-    
-})
-        
-
-});
-
-
-
+            });
+        })
+    });
 });
 
